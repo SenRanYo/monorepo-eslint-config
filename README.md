@@ -1,176 +1,164 @@
-# Monorepo ESLint Config
+# 前端监控SDK Monorepo
 
-这是一个演示如何在 monorepo 中使用共享 ESLint 配置的项目。
+一个现代化的前端监控SDK项目，采用monorepo架构，支持多平台部署。
 
-## 项目结构
+## 🏗️ 项目架构
 
 ```
 monorepo-eslint-config/
-├── packages/
-│   ├── eslint-config/          # 共享的 ESLint 配置包
-│   │   ├── configs/
-│   │   │   ├── base.js         # 基础配置
-│   │   │   ├── typescript.js   # TypeScript 配置
-│   │   │   ├── react.js        # React 配置
-│   │   │   └── node.js         # Node.js 配置
-│   │   ├── index.js
-│   │   ├── package.json
-│   │   └── README.md
-│   ├── react-app/              # React 应用示例
-│   │   ├── src/
-│   │   ├── .eslintrc.js        # 使用 React 配置
-│   │   ├── package.json
-│   │   └── tsconfig.json
-│   ├── node-lib/               # Node.js 库示例
-│   │   ├── src/
-│   │   ├── .eslintrc.js        # 使用 Node.js 配置
-│   │   ├── package.json
-│   │   └── tsconfig.json
-│   └── utils-lib/              # TypeScript 工具库示例
-│       ├── src/
-│       ├── .eslintrc.js        # 使用 TypeScript 配置
-│       ├── package.json
-│       └── tsconfig.json
-├── package.json
-├── pnpm-workspace.yaml
-└── README.md
+├── packages/                    # 核心包目录
+│   ├── core/                   # 核心SDK包
+│   ├── web/                    # Web平台适配层
+│   ├── react/                  # React平台适配层
+│   ├── vue/                    # Vue平台适配层
+│   ├── miniprogram/            # 小程序平台适配层
+│   └── eslint-config/          # ESLint配置包
+├── dev/                        # 开发工具包
+│   └── rollup/                 # Rollup打包配置
+├── examples/                   # 示例项目
+└── docs/                       # 文档
 ```
 
-## 快速开始
+## 🚀 特性
 
-### 1. 安装依赖
+- 🎯 **多平台支持**: Web、React、Vue、小程序等多平台适配
+- 📦 **模块化设计**: 核心功能与平台适配分离，按需加载
+- 🔧 **统一工具链**: 统一的ESLint配置、构建工具、测试框架
+- 📊 **完整监控**: 错误监控、性能监控、用户行为追踪
+- 🔄 **自动化**: CI/CD、版本管理、自动发布
+- 📝 **TypeScript**: 完整的类型支持
 
+## 🛠️ 技术栈
+
+- **包管理**: pnpm + workspace
+- **构建工具**: Rollup + Vite
+- **类型检查**: TypeScript 5.x
+- **代码规范**: ESLint + Prettier
+- **测试框架**: Vitest
+- **版本管理**: Changesets
+- **CI/CD**: GitHub Actions
+
+## 📦 包说明
+
+### 核心包
+- `@monitor-sdk/core`: 监控SDK核心功能，提供基础的监控能力
+- `@monitor-sdk/eslint-config`: 统一的ESLint配置规则
+
+### 平台适配包
+- `@monitor-sdk/web`: Web平台适配层，基于core包扩展
+- `@monitor-sdk/react`: React应用监控，提供React特定的监控功能
+- `@monitor-sdk/vue`: Vue应用监控，提供Vue特定的监控功能
+- `@monitor-sdk/miniprogram`: 小程序监控适配
+
+### 开发工具包
+- `@monitor-sdk/rollup-config`: 统一的Rollup打包配置，支持ESM/CJS/IIFE格式
+
+## 🚀 快速开始
+
+### 安装依赖
 ```bash
+# 安装pnpm（如果未安装）
+npm install -g pnpm
+
+# 安装项目依赖
 pnpm install
 ```
 
-### 2. 运行 ESLint 检查
-
-检查所有包：
+### 开发命令
 ```bash
-pnpm lint
-```
-
-修复所有包的 ESLint 问题：
-```bash
-pnpm lint:fix
-```
-
-检查特定包：
-```bash
-cd packages/react-app
-pnpm lint
-```
-
-### 3. 构建项目
-
-构建所有包：
-```bash
-pnpm build
-```
-
-### 4. 开发模式
-
-启动 React 应用：
-```bash
-cd packages/react-app
+# 启动开发模式
 pnpm dev
+
+# 构建所有包
+pnpm build
+
+# 运行测试
+pnpm test
+
+# 代码检查
+pnpm lint
+
+# 类型检查
+pnpm type-check
+
+# 清理构建产物
+pnpm clean
 ```
 
-## ESLint 配置说明
+### 项目状态
+✅ **已完成的功能**:
+- 基础项目结构和配置
+- ESLint配置包（支持TypeScript、React、Vue、Node.js）
+- 核心SDK包（基础监控功能和架构）
+- Web平台适配层（浏览器环境监控）
+- React适配层（React特定功能和Hooks）
+- Vue适配层（Vue特定功能）
+- Rollup构建配置包（支持ESM/CJS/IIFE格式）
+- CI/CD工作流配置
+- 示例项目
 
-### 可用配置
+🔧 **需要进一步完善的功能**:
+- 小程序适配层实现
+- 完整的测试覆盖
+- 文档网站
+- 性能优化
+- 更多示例项目
 
-1. **基础配置** (`@monorepo/eslint-config/configs/base`)
-   - 适用于所有 JavaScript 项目
-   - 包含基础的 ESLint 规则和 Prettier 集成
+### 版本管理
+```bash
+# 添加变更集
+pnpm changeset
 
-2. **TypeScript 配置** (`@monorepo/eslint-config/configs/typescript`)
-   - 继承基础配置
-   - 添加 TypeScript 特定规则
-   - 适用于 TypeScript 项目
+# 版本升级
+pnpm version-packages
 
-3. **React 配置** (`@monorepo/eslint-config/configs/react`)
-   - 继承 TypeScript 配置
-   - 添加 React、React Hooks 和可访问性规则
-   - 适用于 React + TypeScript 项目
-
-4. **Node.js 配置** (`@monorepo/eslint-config/configs/node`)
-   - 继承 TypeScript 配置
-   - 添加 Node.js 特定规则
-   - 适用于 Node.js + TypeScript 项目
-
-### 使用示例
-
-#### React 项目
-```js
-// packages/react-app/.eslintrc.js
-module.exports = {
-  extends: ['@monorepo/eslint-config/configs/react'],
-  parserOptions: {
-    project: './tsconfig.json',
-    tsconfigRootDir: __dirname,
-  },
-};
+# 发布包
+pnpm release
 ```
 
-#### Node.js 项目
-```js
-// packages/node-lib/.eslintrc.js
-module.exports = {
-  extends: ['@monorepo/eslint-config/configs/node'],
-  parserOptions: {
-    project: './tsconfig.json',
-    tsconfigRootDir: __dirname,
-  },
-  rules: {
-    'no-console': 'off', // Node.js 项目中允许使用 console
-  },
-};
+## 📖 使用示例
+
+### Web平台
+```typescript
+import { MonitorSDK } from '@monitor-sdk/web';
+
+const monitor = new MonitorSDK({
+  appId: 'your-app-id',
+  apiKey: 'your-api-key',
+  enableErrorTracking: true,
+  enablePerformanceTracking: true
+});
+
+monitor.init();
 ```
 
-#### TypeScript 工具库
-```js
-// packages/utils-lib/.eslintrc.js
-module.exports = {
-  extends: ['@monorepo/eslint-config/configs/typescript'],
-  parserOptions: {
-    project: './tsconfig.json',
-    tsconfigRootDir: __dirname,
-  },
-  rules: {
-    '@typescript-eslint/no-explicit-any': 'error', // 更严格的类型检查
-  },
-};
+### React应用
+```typescript
+import { ReactMonitorSDK } from '@monitor-sdk/react';
+
+const monitor = new ReactMonitorSDK({
+  appId: 'your-app-id',
+  apiKey: 'your-api-key'
+});
+
+// 在React应用中使用
+function App() {
+  useEffect(() => {
+    monitor.init();
+  }, []);
+  
+  return <div>Your App</div>;
+}
 ```
 
-## 包管理
+## 🤝 贡献指南
 
-这个项目使用 pnpm 作为包管理器，支持 workspace 功能：
+1. Fork 项目
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 打开 Pull Request
 
-- 所有依赖都安装在根目录的 `node_modules` 中
-- 子包之间可以通过 `workspace:*` 相互引用
-- 使用 `pnpm -r` 命令可以在所有子包中运行脚本
+## 📄 许可证
 
-## 开发工作流
-
-1. **添加新的子包**：
-   - 在 `packages/` 目录下创建新文件夹
-   - 创建 `package.json` 并设置正确的包名
-   - 根据项目类型选择合适的 ESLint 配置
-   - 在根目录运行 `pnpm install` 安装依赖
-
-2. **修改 ESLint 规则**：
-   - 全局规则：修改 `packages/eslint-config/configs/` 中的配置文件
-   - 项目特定规则：在子包的 `.eslintrc.js` 中覆盖
-
-3. **添加新的 ESLint 配置**：
-   - 在 `packages/eslint-config/configs/` 中创建新的配置文件
-   - 更新 `packages/eslint-config/README.md` 文档
-
-## 注意事项
-
-- 确保每个子包的 `tsconfig.json` 中的 `project` 路径正确
-- 在 `.eslintrc.js` 中设置正确的 `tsconfigRootDir`
-- 新增 ESLint 插件时，需要在 `eslint-config` 包中添加依赖
-- 使用 `workspace:*` 引用本地包，避免版本冲突
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。

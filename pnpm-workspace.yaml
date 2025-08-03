@@ -1,2 +1,28 @@
+# pnpm workspace 配置
+# 定义monorepo中的包结构
 packages:
-  - 'packages/*'
+  # 核心包
+  - "packages/core"
+  
+  # 平台适配层包
+  - "packages/web"
+  - "packages/react"
+  - "packages/vue"
+  - "packages/miniprogram"
+  
+  # 配置包
+  - "packages/eslint-config"
+  
+  # 开发工具包
+  - "dev/*"
+  
+  # 示例和文档
+  - "examples/*"
+  - "docs"
+
+# 排除不需要作为包管理的目录
+exclude:
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/.next/**"

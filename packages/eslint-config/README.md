@@ -1,216 +1,151 @@
-# @monorepo/eslint-config
+# @monitor-sdk/eslint-config
 
-共享的 ESLint 配置包，为 monorepo 中的不同类型项目提供统一的代码规范。现在支持模块化规则组合，让你可以灵活地组合使用不同的规则集。
+Monitor SDK 统一 ESLint 配置包，为 monorepo 中的所有子包提供一致的代码规范。
 
-## 🚀 新特性：模块化规则
-
-现在你可以按需组合不同的规则模块，而不是使用预定义的配置。这让配置更加灵活和可定制。
-
-## 使用方式
-
-### 1. 使用预设配置（推荐）
-
-我们提供了几种常用的预设配置，开箱即用：
-
-#### JavaScript 预设
-```js
-// .eslintrc.js
-module.exports = {
-  extends: ['@monorepo/eslint-config/presets/javascript'],
-};
-```
-
-#### TypeScript 预设
-```js
-// .eslintrc.js
-module.exports = {
-  extends: ['@monorepo/eslint-config/presets/typescript'],
-};
-```
-
-#### React 预设
-```js
-// .eslintrc.js
-module.exports = {
-  extends: ['@monorepo/eslint-config/presets/react'],
-};
-```
-
-#### Node.js 预设
-```js
-// .eslintrc.js
-module.exports = {
-  extends: ['@monorepo/eslint-config/presets/node'],
-};
-```
-
-### 2. 使用传统配置（向后兼容）
-
-原有的配置方式仍然可用：
-
-```js
-// .eslintrc.js
-module.exports = {
-  extends: ['@monorepo/eslint-config/configs/react'],
-};
-```
-
-### 3. 自定义组合规则模块
-
-这是新功能的核心！你可以按需组合不同的规则模块：
-
-```js
-// .eslintrc.js
-const { rules } = require('@monorepo/eslint-config');
-
-module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  extends: [
-    'eslint:recommended',
-    '@typescript-eslint/recommended',
-    'eslint-config-prettier',
-  ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: './tsconfig.json',
-  },
-  plugins: ['@typescript-eslint', 'import'],
-  rules: {
-    // 只使用你需要的规则模块
-    ...rules.javascript.rules,
-    ...rules.import.rules,
-    ...rules.typescript.rules,
-
-    // 覆盖特定规则
-    '@typescript-eslint/no-explicit-any': 'off',
-    'no-console': 'error',
-  },
-};
-```
-
-## 可用的规则模块
-
-| 模块 | 描述 | 引用方式 |
-|------|------|----------|
-| `javascript` | 基础 JavaScript 规则 | `rules.javascript.rules` |
-| `import` | Import/Export 规则 | `rules.import.rules` |
-| `typescript` | TypeScript 规则 | `rules.typescript.rules` |
-| `react` | React 组件规则 | `rules.react.rules` |
-| `reactHooks` | React Hooks 规则 | `rules.reactHooks.rules` |
-| `jsxA11y` | JSX 可访问性规则 | `rules.jsxA11y.rules` |
-| `node` | Node.js 规则 | `rules.node.rules` |
-
-## 安装
-
-在 monorepo 根目录安装：
+## 📦 安装
 
 ```bash
-pnpm add -D @monorepo/eslint-config eslint
+# 使用 pnpm
+pnpm add -D @monitor-sdk/eslint-config eslint
+
+# 使用 npm
+npm install -D @monitor-sdk/eslint-config eslint
+
+# 使用 yarn
+yarn add -D @monitor-sdk/eslint-config eslint
 ```
 
-## 使用场景示例
+## 🚀 使用方法
 
-### 场景 1：纯 TypeScript 库（无 React）
-```js
-const { rules } = require('@monorepo/eslint-config');
+### 基础配置
 
-module.exports = {
-  extends: ['@monorepo/eslint-config/presets/typescript'],
-  // 或者自定义组合：
-  // rules: {
-  //   ...rules.javascript.rules,
-  //   ...rules.import.rules,
-  //   ...rules.typescript.rules,
-  // }
+在项目根目录创建 `.eslintrc.js` 文件：
+
+```javascript
+export default {
+  extends: ['@monitor-sdk/eslint-config']
 };
 ```
 
-### 场景 2：React 应用但不需要 A11y 检查
-```js
-const { rules } = require('@monorepo/eslint-config');
+### TypeScript 项目
 
-module.exports = {
-  env: { browser: true, es2021: true },
-  extends: [
-    'eslint:recommended',
-    '@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-  ],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'import', 'react', 'react-hooks'],
-  rules: {
-    ...rules.javascript.rules,
-    ...rules.import.rules,
-    ...rules.typescript.rules,
-    ...rules.react.rules,
-    ...rules.reactHooks.rules,
-    // 注意：没有包含 jsxA11y 规则
-  },
+```javascript
+export default {
+  extends: ['@monitor-sdk/eslint-config/typescript']
 };
 ```
 
-### 场景 3：Node.js CLI 工具
-```js
-const { rules } = require('@monorepo/eslint-config');
+### React 项目
 
-module.exports = {
-  env: { node: true, es2021: true },
-  extends: ['@monorepo/eslint-config/presets/node'],
+```javascript
+export default {
+  extends: ['@monitor-sdk/eslint-config/react']
+};
+```
+
+### Vue 项目
+
+```javascript
+export default {
+  extends: ['@monitor-sdk/eslint-config/vue']
+};
+```
+
+### Node.js 项目
+
+```javascript
+export default {
+  extends: ['@monitor-sdk/eslint-config/node']
+};
+```
+
+## 📋 配置说明
+
+### 可用配置
+
+- `@monitor-sdk/eslint-config` - 基础配置，适用于所有项目
+- `@monitor-sdk/eslint-config/base` - 纯 JavaScript 基础配置
+- `@monitor-sdk/eslint-config/typescript` - TypeScript 项目配置
+- `@monitor-sdk/eslint-config/react` - React 项目配置（包含 TypeScript）
+- `@monitor-sdk/eslint-config/vue` - Vue 项目配置（包含 TypeScript）
+- `@monitor-sdk/eslint-config/node` - Node.js 项目配置
+
+### 包含的插件
+
+- **基础配置**:
+  - `eslint:recommended`
+  - `eslint-config-prettier`
+  - `eslint-plugin-import`
+  - `eslint-plugin-prettier`
+
+- **TypeScript 配置**:
+  - `@typescript-eslint/eslint-plugin`
+  - `@typescript-eslint/parser`
+
+- **React 配置**:
+  - `eslint-plugin-react`
+  - `eslint-plugin-react-hooks`
+  - `eslint-plugin-jsx-a11y`
+
+- **Vue 配置**:
+  - `eslint-plugin-vue`
+
+## 🔧 自定义配置
+
+你可以在项目中覆盖或扩展这些规则：
+
+```javascript
+export default {
+  extends: ['@monitor-sdk/eslint-config/typescript'],
   rules: {
-    // 允许 console.log 在 CLI 工具中
+    // 自定义规则
     'no-console': 'off',
-  },
+    '@typescript-eslint/no-explicit-any': 'warn'
+  }
 };
 ```
 
-## 配置层次
+## 📝 规则说明
 
-```
-javascript (基础 JS 规则)
-  ↓
-import (模块导入规则)
-  ↓
-typescript (TS 类型规则)
-  ↓
-react + reactHooks + jsxA11y (React 生态) 或 node (Node.js 环境)
-```
+### 代码质量规则
 
-## 迁移指南
+- 禁止未使用的变量和导入
+- 强制使用严格相等 (`===`)
+- 禁止使用 `eval()` 和类似的不安全方法
+- 要求适当的错误处理
 
-### 从旧配置迁移
+### 代码风格规则
 
-如果你之前使用：
-```js
-module.exports = {
-  extends: ['@monorepo/eslint-config/configs/react'],
-};
-```
+- 使用 2 空格缩进
+- 使用单引号
+- 要求分号
+- 对象和数组的一致格式化
 
-现在可以改为：
-```js
-module.exports = {
-  extends: ['@monorepo/eslint-config/presets/react'],
-};
-```
+### TypeScript 特定规则
 
-或者使用模块化方式获得更多控制：
-```js
-const { rules } = require('@monorepo/eslint-config');
+- 强制类型安全
+- 优先使用现代 TypeScript 特性
+- 一致的命名约定
+- 类型导入优化
 
-module.exports = {
-  // ... 基础配置
-  rules: {
-    ...rules.javascript.rules,
-    ...rules.typescript.rules,
-    ...rules.react.rules,
-    // 自定义覆盖
-    'react/jsx-props-no-spreading': 'off',
-  },
-};
-```
+### React 特定规则
+
+- React Hooks 规则
+- JSX 可访问性检查
+- 组件最佳实践
+- 性能优化建议
+
+### Vue 特定规则
+
+- Vue 3 推荐规则
+- 模板语法规范
+- 组件命名约定
+- Composition API 最佳实践
+
+## 🤝 贡献
+
+如果你发现规则配置有问题或需要改进，请提交 Issue 或 Pull Request。
+
+## 📄 许可证
+
+MIT
