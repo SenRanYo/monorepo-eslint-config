@@ -1,0 +1,29 @@
+{
+  "name": "@monorepo/javascript-test",
+  "version": "1.0.0",
+  "description": "Comprehensive JavaScript ESLint rule testing examples",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint src --ext .js,.mjs",
+    "lint:fix": "eslint src --ext .js,.mjs --fix",
+    "lint:report": "eslint src --ext .js,.mjs --format html --output-file eslint-report.html",
+    "test": "echo \"This package contains ESLint test examples\"",
+    "clean": "rm -rf eslint-report.html"
+  },
+  "keywords": [
+    "javascript",
+    "eslint",
+    "testing",
+    "examples",
+    "code-quality",
+    "es6",
+    "modern-javascript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@monorepo/eslint-config": "workspace:*",
+    "eslint": "^8.45.0"
+  }
+}

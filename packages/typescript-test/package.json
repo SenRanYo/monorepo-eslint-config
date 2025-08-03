@@ -1,0 +1,30 @@
+{
+  "name": "@monorepo/typescript-test",
+  "version": "1.0.0",
+  "description": "Comprehensive TypeScript ESLint rule testing examples",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "lint:report": "eslint src --ext .ts --format html --output-file eslint-report.html",
+    "test": "echo \"This package contains ESLint test examples\"",
+    "clean": "rm -rf dist eslint-report.html"
+  },
+  "keywords": [
+    "typescript",
+    "eslint",
+    "testing",
+    "examples",
+    "code-quality"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@monorepo/eslint-config": "workspace:*",
+    "@types/node": "^20.0.0",
+    "eslint": "^8.45.0",
+    "typescript": "^5.0.0"
+  }
+}
