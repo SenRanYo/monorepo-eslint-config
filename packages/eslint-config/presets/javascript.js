@@ -1,3 +1,7 @@
+/**
+ * 基础 JavaScript 预设
+ * 适用于纯 JavaScript 项目
+ */
 const javascriptRules = require('../rules/javascript');
 const importRules = require('../rules/import');
 

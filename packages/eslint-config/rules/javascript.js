@@ -1,0 +1,65 @@
+/**
+ * 基础 JavaScript 规则
+ * 包含通用的 JavaScript 代码质量和风格规则
+ */
+module.exports = {
+  rules: {
+    // 基础规则
+    'no-console': 'warn',
+    'no-debugger': 'error',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'prefer-const': 'error',
+    'no-var': 'error',
+    
+    // 代码质量规则
+    'no-duplicate-imports': 'error',
+    'no-unreachable': 'error',
+    'no-unreachable-loop': 'error',
+    'no-unsafe-finally': 'error',
+    'no-unsafe-optional-chaining': 'error',
+    'no-useless-backreference': 'error',
+    'no-useless-catch': 'error',
+    'no-useless-return': 'error',
+    
+    // 最佳实践
+    'array-callback-return': 'error',
+    'consistent-return': 'error',
+    'curly': ['error', 'all'],
+    'default-case': 'error',
+    'default-case-last': 'error',
+    'dot-notation': 'error',
+    'eqeqeq': ['error', 'always'],
+    'no-alert': 'error',
+    'no-caller': 'error',
+    'no-eval': 'error',
+    'no-extend-native': 'error',
+    'no-extra-bind': 'error',
+    'no-floating-decimal': 'error',
+    'no-implicit-coercion': 'error',
+    'no-implied-eval': 'error',
+    'no-lone-blocks': 'error',
+    'no-loop-func': 'error',
+    'no-multi-spaces': 'error',
+    'no-new': 'error',
+    'no-new-func': 'error',
+    'no-new-wrappers': 'error',
+    'no-octal-escape': 'error',
+    'no-param-reassign': 'error',
+    'no-proto': 'error',
+    'no-return-assign': 'error',
+    'no-return-await': 'error',
+    'no-script-url': 'error',
+    'no-self-compare': 'error',
+    'no-sequences': 'error',
+    'no-throw-literal': 'error',
+    'no-unmodified-loop-condition': 'error',
+    'no-unused-expressions': 'error',
+    'no-useless-call': 'error',
+    'no-useless-concat': 'error',
+    'no-void': 'error',
+    'prefer-promise-reject-errors': 'error',
+    'radix': 'error',
+    'require-await': 'error',
+    'yoda': 'error',
+  },
+};

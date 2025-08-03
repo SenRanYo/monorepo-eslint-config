@@ -8,13 +8,19 @@
   ],
   "scripts": {
     "build": "pnpm -r build",
-    "lint": "pnpm -r lint",
-    "lint:fix": "pnpm -r lint:fix",
+    "lint": "eslint . --ext .js,.ts,.tsx --ignore-path .gitignore",
+    "lint:fix": "eslint . --ext .js,.ts,.tsx --ignore-path .gitignore --fix",
+    "lint:packages": "pnpm -r lint",
+    "lint:packages:fix": "pnpm -r lint:fix",
+    "lint:all": "pnpm lint && pnpm lint:packages",
+    "lint:all:fix": "pnpm lint:fix && pnpm lint:packages:fix",
     "test": "pnpm -r test",
     "clean": "pnpm -r clean",
     "dev": "pnpm -r dev"
   },
   "devDependencies": {
+    "@monorepo/eslint-config": "workspace:*",
+    "eslint": "^8.45.0",
     "pnpm": "^8.0.0"
   },
   "engines": {

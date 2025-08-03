@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Comprehensive TypeScript ESLint rule testing examples",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",

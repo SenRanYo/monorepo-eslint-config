@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['@monorepo/eslint-config/configs/react'],
+  extends: ['@monorepo/eslint-config/presets/react'],
   parserOptions: {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
