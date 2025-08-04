@@ -5,25 +5,21 @@
 
 module.exports = {
   extends: [
-    'eslint:recommended',
-    'eslint-config-prettier'
+    'eslint:recommended'
   ],
-  
-  plugins: [
-    'import',
-    'prettier'
-  ],
+
+  plugins: [],
   
   rules: {
     // 代码质量规则
-    'no-unused-vars': ['error', { 
+    'no-unused-vars': ['error', {
       argsIgnorePattern: '^_',
-      varsIgnorePattern: '^_' 
+      varsIgnorePattern: '^_'
     }],
     'no-undef': 'error',
     'no-unreachable': 'error',
     'no-duplicate-imports': 'error',
-    
+
     // 代码风格规则
     'indent': ['error', 2, { SwitchCase: 1 }],
     'quotes': ['error', 'single', { avoidEscape: true }],
@@ -31,26 +27,7 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     'object-curly-spacing': ['error', 'always'],
     'array-bracket-spacing': ['error', 'never'],
-    
-    // 导入规则
-    'import/order': ['error', {
-      groups: [
-        'builtin',
-        'external',
-        'internal',
-        'parent',
-        'sibling',
-        'index'
-      ],
-      'newlines-between': 'always',
-      alphabetize: {
-        order: 'asc',
-        caseInsensitive: true
-      }
-    }],
-    'import/no-unresolved': 'error',
-    'import/no-duplicates': 'error',
-    
+
     // 最佳实践
     'eqeqeq': ['error', 'always'],
     'curly': ['error', 'all'],
@@ -65,16 +42,6 @@ module.exports = {
     'no-useless-call': 'error',
     'no-useless-concat': 'error',
     'no-useless-return': 'error',
-    'prefer-promise-reject-errors': 'error',
-    
-    // Prettier集成
-    'prettier/prettier': ['error', {
-      singleQuote: true,
-      trailingComma: 'none',
-      tabWidth: 2,
-      semi: true,
-      printWidth: 80,
-      endOfLine: 'lf'
-    }]
+    'prefer-promise-reject-errors': 'error'
   }
 };

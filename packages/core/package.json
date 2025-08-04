@@ -2,7 +2,6 @@
   "name": "@monitor-sdk/core",
   "version": "1.0.0",
   "description": "Monitor SDK 核心包 - 提供监控SDK的基础功能和架构",
-  "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -44,10 +43,16 @@
   "devDependencies": {
     "@monitor-sdk/eslint-config": "workspace:*",
     "@monitor-sdk/rollup-config": "workspace:*",
+    "@nx/eslint": "^21.3.11",
+    "@nx/js": "^21.3.11",
+    "@nx/rollup": "^21.3.11",
+    "@nx/vite": "^21.3.11",
+    "@nx/workspace": "^21.3.11",
     "@types/node": "^20.11.0",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "eslint": "^8.56.0",
+    "nx": "21.3.11",
     "rimraf": "^5.0.5",
     "rollup": "^4.9.6",
     "typescript": "^5.3.3",
@@ -55,5 +60,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "nx": {}
 }

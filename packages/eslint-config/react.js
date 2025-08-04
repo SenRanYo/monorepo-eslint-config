@@ -5,7 +5,7 @@
 
 module.exports = {
   extends: [
-    './typescript.cjs',
+    './typescript.js',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended'

@@ -1,0 +1,75 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/web/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "project": "packages/web/package.json",
+        "entryFile": "packages/web/src/index.ts",
+        "tsConfig": "packages/web/tsconfig.json",
+        "compiler": "tsc",
+        "format": ["cjs", "esm"],
+        "external": ["@monitor-sdk/core"],
+        "rollupConfig": "packages/web/rollup.config.js"
+      },
+      "dependsOn": ["core:build"]
+    },
+    "dev": {
+      "executor": "@nx/rollup:rollup",
+      "options": {
+        "project": "packages/web/package.json",
+        "entryFile": "packages/web/src/index.ts",
+        "tsConfig": "packages/web/tsconfig.json",
+        "compiler": "tsc",
+        "format": ["cjs", "esm"],
+        "external": ["@monitor-sdk/core"],
+        "rollupConfig": "packages/web/rollup.config.js",
+        "watch": true
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{projectRoot}/coverage"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/web"
+      }
+    },
+    "test:coverage": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{projectRoot}/coverage"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/web",
+        "coverage": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/web/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "type-check": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "tsConfig": "packages/web/tsconfig.json",
+        "noEmit": true
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rimraf dist",
+        "cwd": "packages/web"
+      }
+    }
+  },
+  "tags": ["scope:web", "type:lib"]
+}

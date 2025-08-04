@@ -6,7 +6,7 @@
 module.exports = {
   // 继承基础配置
   extends: [
-    './base.cjs'
+    './base.js'
   ],
   
   // 环境配置

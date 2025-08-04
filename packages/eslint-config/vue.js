@@ -5,7 +5,7 @@
 
 module.exports = {
   extends: [
-    './typescript.cjs',
+    './typescript.js',
     'plugin:vue/vue3-recommended'
   ],
   

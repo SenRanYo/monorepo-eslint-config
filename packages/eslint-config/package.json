@@ -2,14 +2,14 @@
   "name": "@monitor-sdk/eslint-config",
   "version": "1.0.0",
   "description": "Monitor SDK统一ESLint配置",
-  "main": "index.cjs",
+  "main": "index.js",
   "files": [
-    "index.cjs",
-    "base.cjs",
-    "typescript.cjs",
-    "react.cjs",
-    "vue.cjs",
-    "node.cjs"
+    "index.js",
+    "base.js",
+    "typescript.js",
+    "react.js",
+    "vue.js",
+    "node.js"
   ],
   "keywords": [
     "eslint",

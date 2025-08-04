@@ -1,0 +1,74 @@
+{
+  "name": "core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/core/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "project": "packages/core/package.json",
+        "entryFile": "packages/core/src/index.ts",
+        "tsConfig": "packages/core/tsconfig.json",
+        "compiler": "tsc",
+        "format": ["cjs", "esm"],
+        "external": ["eventemitter3"],
+        "rollupConfig": "packages/core/rollup.config.js"
+      }
+    },
+    "dev": {
+      "executor": "@nx/rollup:rollup",
+      "options": {
+        "project": "packages/core/package.json",
+        "entryFile": "packages/core/src/index.ts",
+        "tsConfig": "packages/core/tsconfig.json",
+        "compiler": "tsc",
+        "format": ["cjs", "esm"],
+        "external": ["eventemitter3"],
+        "rollupConfig": "packages/core/rollup.config.js",
+        "watch": true
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{projectRoot}/coverage"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/core"
+      }
+    },
+    "test:coverage": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{projectRoot}/coverage"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/core",
+        "coverage": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/core/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "type-check": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "tsConfig": "packages/core/tsconfig.json",
+        "noEmit": true
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rimraf dist",
+        "cwd": "packages/core"
+      }
+    }
+  },
+  "tags": ["scope:core", "type:lib"]
+}
